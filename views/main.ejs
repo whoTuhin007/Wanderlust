@@ -1,0 +1,226 @@
+<% layout('/layouts/boilerplate.ejs') %>
+
+    <style>
+        .categories {
+            display: flex;
+            gap: 1rem;
+            width: 50%;
+            height: 4rem;
+            overflow-x: scroll;
+            scrollbar-width: none;
+            border-right: 1px solid rgba(0, 0, 0, 0.461);
+        }
+
+        .icon {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .catCon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            height: 6rem;
+
+        }
+
+        #flexSwitchCheckDefault {
+
+            border: 1px solid black !important;
+
+        }
+
+        .form-check {
+            border: 1px solid rgba(0, 0, 0, 0.461);
+            border-radius: 25px;
+            width: 17rem;
+            height: 3rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            margin-right: 28px;
+
+        }
+    </style>
+
+
+    <br><br>
+
+    <body>
+   
+        <div class="catCon">
+
+            <div class="categories ms-4 mb-4">
+                <div class="icon">
+                    <i class="fa-solid fa-fire"></i>
+                    <a href="/listing" class="nav-link">Trending</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-bed"></i>
+                    <a href="/listing" class="nav-link">Rooms</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-hill-rockslide"></i>
+                    <a href="/listing" class="nav-link">Hills</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-tree"></i>
+                    <a href="/listing" class="nav-link">Forest</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-campground"></i>
+                    <a href="/listing" class="nav-link">Camps</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-earth-oceania"></i>
+                    <a href="/listing" class="nav-link">ocean</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-umbrella-beach"></i>
+                    <a href="/listing" class="nav-link">Beaches</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-city"></i>
+                    <a href="/listing" class="nav-link">Cities</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <a href="/listing" class="nav-link">Cold</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-shop"></i>
+                    <a href="/listing" class="nav-link">Shops</a>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-landmark"></i>
+                    <a href="/listing" class="nav-link">monuments</a>
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    aria-pressed="true">
+                <label class="form-check-label nav-link" for="flexSwitchCheckDefault"><b>Show including GST</b></label>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row  row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1">
+
+
+            <% for(info of newInfos){ %>
+                <a href="/listing/<%= info._id %>">
+                    <div class="card listing-card col" style="width: 20rem">
+                        <img src="<%= info.image.url %>" alt="image" class="card-img-top" />
+
+
+                        <div class="card-img-overlay">
+                            <i class="fa-regular fa-heart"></i>
+                            <!-- <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
+                        </div>
+
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong><b>
+                                        <%= info.title %>
+                                    </b></strong>
+                                    <div>
+                                        <% if (info.avgRating) { %>
+                                            Rated -  <%= info.avgRating%> ★ 
+                                         
+                                        <% } %>
+                                        <% if (!info.avgRating) { %>
+                                           Not Rated
+                                         
+                                        <% } %>
+                                    </div>
+                                   
+                                    
+                               
+
+
+
+
+
+                                            
+
+
+
+                                           <div class="nogst" style="display: inline;">
+                                            Pricing -  &#8377 <%= info.price.toLocaleString('en-IN') %> /night &nbsp; (without GST)
+                                                &nbsp;&nbsp;&nbsp;
+                                           </div>
+                                                
+                                                <div class="gst" style="display:none;"> Pricing - &#8377 <%= (info.price*(118/100)).toLocaleString('en-IN') 
+                                                        %>  /night &nbsp; (+18% GST)
+                                                </div>
+
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+
+                <% }%>
+        </div>
+
+        <script>
+            let toggleButton = document.getElementById('flexSwitchCheckDefault');
+            toggleButton.addEventListener('click', () => {
+                let state = toggleButton.getAttribute('aria-pressed');
+                if (state === 'true') {
+                    let gst = document.getElementsByClassName('gst');
+                    let nogst = document.getElementsByClassName('nogst');
+                    for (let element of gst) { element.style.display = 'inline'; }
+                    for (let element of nogst) { element.style.display = 'none'; }
+
+                    toggleButton.setAttribute('aria-pressed', 'false');
+                    
+
+                    
+
+                }
+                else if (state === 'false') {
+                    let gst = document.getElementsByClassName('gst');
+                    let nogst = document.getElementsByClassName('nogst');
+                    for (let element of gst) { element.style.display = 'none'; }
+                    for (let element of nogst) { element.style.display = 'inline'; }
+                    toggleButton.setAttribute('aria-pressed', 'true');
+
+
+                }
+                console.log('clicked')
+
+
+
+            }
+
+            )
+
+
+
+        </script>
+    </body>
+    <br>
+    <br>

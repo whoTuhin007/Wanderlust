@@ -1,0 +1,120 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+        <br>
+        <br>
+        
+        <form action="/listing/<%= listing._id %>?_method=PUT" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+            <div class="row">
+                
+                <div class="col-8 offset-2">
+                    <H1>Edit Listing</H1>
+                    <br>
+                    <div class="col-md-4">
+                        <label for="title" class="form-label">Title</label>
+                    <input type="text" name="Listing[title]" id="title" value="<%= listing.title %>" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        please enter a valid Title!
+                        
+                    </div>
+                    </div>
+                    
+
+                    <br><br>
+                    <div >
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="Listing[description]" rows="5" cols="20"
+                            type="text" class="form-control" required><%= listing.description %> </textarea>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                please enter a valid description!
+                            </div>
+                    </div>
+                 
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            Current Image <br>
+                            <img src="<%= originalImage %>" alt="img" style="width: 7rem !important;">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                   
+                    <div>
+
+                        
+                    <label for="image" class="form-label">Image</label>
+
+                    <input type="file" name="Listing[image]" id="image"   class="form-control" >
+                   
+                    
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+                            <label for="price" class="form-label">Price (Rupees)</label>
+
+                            <input type="number" min="1" name="Listing[price]" id="price" value='<%= listing.price %>' class="form-control" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            
+                            
+        
+                            
+
+                        </div>
+                        <div class="mb-3 col-md-8">
+                            <label for="location" class="form-label">Location</label>
+        
+                            <input type="text" name="Listing[location]" id="location" value="<%= listing.location %>" class="form-control">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                   
+                    <br><br>
+                    <div class="row">
+                        <div class="mb-3 col-md-8">
+                            <label for="country" class="form-label">Country</label>
+
+                            <input type="text" name="Listing[country]" id="country" value='<%= listing.country %>' class="form-control">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <label for="button" class="form-label">&nbsp;</label>
+                            <br>
+                            <button type="submit" class="btn btn-dark"> Update </button>
+                        </div>
+
+                       
+                    
+                 
+                    </div>
+                    <br><br>
+                    <a href="/<%= listing._id %>"> <b><i class="fa-solid fa-backward"></i> Back to listings</b></a>
+                    
+
+                </div>
+            </div>
+
+
+        </form>
+        <br>
+        <br>
+        <br>
+
+    </body>

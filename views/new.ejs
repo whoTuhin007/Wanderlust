@@ -1,0 +1,134 @@
+<% layout('/layouts/boilerplate') %>
+
+    <body>
+        <br>
+        <br>
+        <form action="/listing" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="mb-3 col-8 offset-2">
+                    <H1>Create New Listing</H1>
+                    <br><br>
+                    <div class="col-md-5"> <label for="title" class="form-label">Title </label>
+
+                        <input type="text" name="Listing[title]" placeholder="Give Title" id="title"
+                            class="form-control" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            please enter a valid Title!
+                            
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <br><br>
+                    <div>
+                        <label for="description" class="form-label">Description</label>
+
+                        <textarea style="resize: none;" id="description" name="Listing[description]"
+                            placeholder="Give description about your place" rows="5" cols="20"
+                            class="form-control" required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            please enter a valid description!
+                        </div>
+
+                    </div>
+
+                    <br><br>
+                    <div>
+                        <!-- <label for="image" class="form-label">Give Image Url</label>
+
+                        <input type="text" name="Listing[image]" placeholder="Default - A church " id="image" class="form-control is-valid"> -->
+                        <br>
+                        <label for="image" class="form-label">Upload new image</label>
+                       
+                        <input type="file" name="Listing[image]"
+                            placeholder="Default - A church" id="image" class="form-control is-valid" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            upload an image!
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <div class="mb-3 col-md-4 ">
+
+                            <label for="price" class="form-label">Set Price (Rupees)</label>
+                            <input  
+                            
+                                name="Listing[price]" id="price" placeholder="2000" class="form-control is-valid" value="2000" required >
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                
+
+                        </div>
+
+
+
+                        <br><br>
+                        <div class="mb-3 col-md-8">
+                            <label for="location" class="form-label">Set Location</label>
+                            <input type="text" name="Listing[location]" id="location"
+                                value="Asansol,Paschim Burdwan" class="form-control is-valid">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                    <br><br>
+                    <div class="row">
+                        <div class=" mb-3 col-md-8">
+                            <label for="country" class="form-label ">Country</label>
+
+                            <input type="text" name="Listing[country]" id="country" value="India"
+                                class="form-control is-valid" >
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            
+                           
+
+                        </div>
+                        <div class="col-md-4">
+                            <label for="button" class="form-label">&nbsp;</label>
+                            <br>
+
+                            <button type="submit" class="btn btn-dark " id="button"> ADD </button>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <br><br>
+
+                </div>
+            </div>
+
+
+        </form>
+
+    </body>
