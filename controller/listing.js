@@ -133,9 +133,9 @@ module.exports.editedListing = async (req, res) => {
     if (!listing) {
         next(new ExpressError(400, 'Send valid data for listing'))
     };
-    
-    if (req.file!= undefined) {
-        let url = req.file.path ;
+
+    if (req.file != undefined) {
+        let url = req.file.path;
         let filename = req.file.filename;
         listing.image = {
             url, filename
@@ -159,3 +159,49 @@ module.exports.destroyListing = async (req, res) => {
     res.redirect('/listing');
 }
 
+module.exports.findListing = async (req, res) => {
+    // Get the search query from the request
+    let listingDetails = req.body.query.trim().toLowerCase(); // Normalize for comparison
+    let listings = await Listing.find({});
+    let infos = [];
+
+    // Filter listings based on the search query
+    for (let listing of listings) {
+        let title = listing.title.toLowerCase(); // Normalize the title for case-insensitive search
+
+        if (title === listingDetails || title.includes(listingDetails)) {
+            console.log(listing);
+            infos.push(listing);
+        }
+    }
+
+    // If no matching listings are found, handle this case
+    if (infos.length === 0) {
+        req.flash('error', 'No listings found for your search.');
+        return res.redirect('/listing'); // Redirect back to the main listing page
+    }
+
+    // Populate reviews and calculate ratings for matched listings
+    let newInfos = await Promise.all(
+        infos.map(async (info) => {
+            let totRating = 0;
+
+            if (info.reviews && info.reviews.length > 0) {
+                await info.populate('reviews');
+
+                // Calculate total and average ratings
+                for (let review of info.reviews) {
+                    totRating += review.rating;
+                }
+
+                info.avgRating = totRating / info.reviews.length;
+            }
+
+            // Return the updated info object
+            return info;
+        })
+    );
+
+    // Render the main page with filtered listings
+    res.render('main.ejs', { newInfos });
+};

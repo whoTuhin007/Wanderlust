@@ -20,14 +20,14 @@ router.route('/')
      isLoggedIn, 
     upload.single('Listing[image]'),
     validateListing,
-    wrapAsync(listingController.postListing));
+    wrapAsync(listingController.postListing))
+    .put(wrapAsync(listingController.findListing));
 
 //Listing Index Route
 
 
 // Create Route
 router.get('/new', isLoggedIn, listingController.newCreateListing);
-
 //Create POST Route
 
 

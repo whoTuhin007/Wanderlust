@@ -3,7 +3,7 @@
     <body>
 
 
-        <div class="card row col-md-10 offset-1 listing-card">
+        <div class="card row col-md-10  listing-card">
             <h1>
                 <%= info.title %>
             </h1>
@@ -68,7 +68,7 @@
                                     </label>
                                     <fieldset class="starability-basic">
                                         
-                                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+                                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
                                         <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                                         <label for="first-rate1" title="Terrible">1 star</label>
                                         <input type="radio" id="first-rate2" name="review[rating]" value="2" />
@@ -125,15 +125,16 @@
 
 
         </div>
+        <hr>
 
-        <div class="row  offset-1">
+        <div class="row col-md-10  listing-card" style="margin: auto;">
             <h3><b> &nbsp;All Reviews</b></h3>
             <br>
             <br>
             <br>
 
             <% for (review of info.reviews){%>
-                <div class="card text-bg-dark mb-3 ms-3 col-5 mt-3 ">
+                <div class="card text-bg-dark mb-3 ms-3 col-lg-4 col-10 mt-3 ">
                     <ul>
                         <div class="card-body">
                             <li>

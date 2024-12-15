@@ -4,7 +4,7 @@
         .categories {
             display: flex;
             gap: 1rem;
-            width: 50%;
+            width: 70%;
             height: 4rem;
             overflow-x: scroll;
             scrollbar-width: none;
@@ -20,6 +20,7 @@
 
         .catCon {
             display: flex;
+            gap: 5rem;
             justify-content: space-between;
             align-items: center;
 
@@ -36,17 +37,43 @@
 
         .form-check {
             border: 1px solid rgba(0, 0, 0, 0.461);
+            padding: 1rem;
             border-radius: 25px;
             width: 17rem;
+        
             height: 3rem;
             display: flex;
             gap: 1rem;
             justify-content: center;
             align-items: center;
-            margin-bottom: 24px;
-            margin-right: 28px;
+          
+                margin: auto;
+                align-self: end;
+                justify-self: end;
+            
 
         }
+        @media (max-width : 780px) {
+            .categories{
+                
+                width: 100%;
+
+            }
+           
+            .catCon{
+                flex-direction: column;
+                height: 10rem;
+                width: 100%;
+                gap: 0.5rem;
+            
+            }
+            .row-cols-xl-3{
+                margin: auto !important;
+            }
+           
+            
+        }
+     
     </style>
 
 
@@ -56,7 +83,7 @@
    
         <div class="catCon">
 
-            <div class="categories ms-4 mb-4">
+            <div class="categories ">
                 <div class="icon">
                     <i class="fa-solid fa-fire"></i>
                     <a href="/listing" class="nav-link">Trending</a>
@@ -114,6 +141,7 @@
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
                     aria-pressed="true">
+                
                 <label class="form-check-label nav-link" for="flexSwitchCheckDefault"><b>Show including GST</b></label>
             </div>
         </div>
@@ -122,12 +150,12 @@
 
 
 
-        <div class="row  row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1">
+        <div class="row  row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1" >
 
 
             <% for(info of newInfos){ %>
                 <a href="/listing/<%= info._id %>">
-                    <div class="card listing-card col" style="width: 20rem">
+                    <div class="card listing-card " style="width: 20rem ; margin:auto ;">
                         <img src="<%= info.image.url %>" alt="image" class="card-img-top" />
 
 
